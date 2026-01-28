@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__panelsmm__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panel.py.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panelsmm.db'
 db = SQLAlchemy(panel.py)
 
 class User(db.Model):
