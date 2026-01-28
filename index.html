@@ -53,3 +53,8 @@
     </div>
 </body>
 </html>
+
+# Mengatur route template
+@app.route('/')
+def index():
+    return render_template('index.html')
