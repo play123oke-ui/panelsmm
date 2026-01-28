@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__panel.py__)
+app = Flask(__panelsmm__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panel.py.db'
 db = SQLAlchemy(panel.py)
 
