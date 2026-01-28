@@ -5,9 +5,13 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__panelsmm__)
+import os
+template_dir = os.path.abspath('templates')
+app = Flask(__name__, template_folder=template_dir)
+
+# Database msqlite3
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panelsmm.db'
-db = SQLAlchemy(panel.py)
+db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
