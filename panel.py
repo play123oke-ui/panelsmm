@@ -92,4 +92,4 @@ def payments():
     return render_template('payments.html', payments=payments)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
