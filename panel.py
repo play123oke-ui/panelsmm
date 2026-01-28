@@ -3,9 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///smm_panel.db'
-db = SQLAlchemy(app)
+app = Flask(__panel.py__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panelsmm.db'
+db = SQLAlchemy(panel.py)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
