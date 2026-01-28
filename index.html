@@ -13,11 +13,11 @@
 # script lainnya
 from flask import Flask, render_template
 
-app = Flask(__panelsmm__, template_folder='panel.py')
+app = Flask(__Flask__, template_folder='template')
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-if __panel.py__ == '__main__':
+if __main__ == '__main__':
     app.run(debug=True)
