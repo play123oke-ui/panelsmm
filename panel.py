@@ -5,6 +5,15 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
+efrom flask import Flask, render_template
+app = Flask(__name__)
+api_key = 'AIzaSyC1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p_key'
+@app.route('/')
+  def index():
+     return render_template('index.html')
+
+
+
 import os
 template_dir = os.path.abspath('templates')
 app = Flask(__name__, template_folder=template_dir)
