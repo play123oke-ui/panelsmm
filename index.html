@@ -31,5 +31,5 @@ app = Flask(__Flask__, template_folder='template')
 def index():
     return render_template('index.html')
 
-if __main__ == '__main__':
+if __name__ == '__main__':
     app.run(debug=True)
