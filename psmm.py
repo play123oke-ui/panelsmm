@@ -39,6 +39,10 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.route('/tentang')
+def tentang():
+    return render_template('tentang.html')
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
