@@ -21,13 +21,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = api_key
 db = SQLAlchemy(app)
 
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlalchemy://panelsmm.db'
-app.config['SECRET_KEY'] = api_key
-db = SQLAlchemy(app)
-
 @app.route('/')
 def index():
     try:
