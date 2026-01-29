@@ -44,6 +44,19 @@ if __name__ == '__main__':
 @app.route('/tentang')
 def tentang():
     return render_template('tentang.html')
+
+from flask import Flask, render_template
+from flask_pwa import PWA
+
+app = Flask(__name__)
+pwa = PWA(app, static_folder='static', templates_folder='templates')
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
