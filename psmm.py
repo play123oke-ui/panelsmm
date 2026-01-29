@@ -84,6 +84,81 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html')
 
+# API Key DANA
+def generate_api_key():
+    api_key = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
+    return api_key
+
+def generate_api_secret():
+    api_secret = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
+    return api_secret
+
+api_key = generate_api_key()
+api_secret = generate_api_secret()
+
+# Database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panelsmm.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = api_key
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    balance = db.Column(db.Float, default=0.0)
+
+class Deposit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    amount = db.Column(db.Float, nullable=False)
+    payment_method = db.Column(db.String(50), nullable=False)
+    status = db.Column(db.String(50), nullable=False, default='Pending')
+
+class Service(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    price = db.Column(db.Float, nullable=False)
+
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    status = db.Column(db.String(50), nullable=False, default='Pending')
+
+with app.app_context():
+    db.create_all()
+    print(f"API Key: {api_key}")
+    print(f"API Secret: {api_secret}")
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/deposit', methods=['GET', 'POST'])
+def deposit():
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        amount = request.form['amount']
+        payment_method = request.form['payment_method']
+        # Simpan data deposit ke database
+        deposit = Deposit(user_id=user_id, amount=amount, payment_method=payment_method)
+        db.session.add(deposit)
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+    return render_template('deposit.html', api_key=api_key, api_secret=api_secret)
+
+@app.route('/dashboard')
+def dashboard():
+    user = User.query.first()
+    deposits = Deposit.query.filter_by(user_id=user.id).all()
+    orders = Order.query.filter_by(user_id=user.id).all()
+    return render_template('dashboard.html', user=user, deposits=deposits, orders=orders)
+
   # Api Key DANA
 def generate_api_key():
     api_key = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
