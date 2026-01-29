@@ -8,6 +8,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import string
+import os
+print(os.getcwd())
+print(app.template_folder)
 
 app = Flask(__name__, template_folder='templates')
 
