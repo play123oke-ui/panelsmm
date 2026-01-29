@@ -16,11 +16,12 @@ app = Flask(__name__, template_folder='templates')
 api_key = secrets.token_urlsafe(32)
 
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://panelsmm.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panelsmm.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = api_key
 db = SQLAlchemy(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panelsmm.db'
 @app.route('/')
 def index():
     try:
