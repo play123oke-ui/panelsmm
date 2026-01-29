@@ -165,5 +165,12 @@ def database():
     orders = Order.query.all()
     return render_template('database.html', users=users, deposits=deposits, services=services, orders=orders)
 
+# Route untuk halaman index
+@app.route('/')
+def index():
+    services = Service.query.all()
+    orders = Order.query.all()
+    payments = Payment.query.all()
+    return render_template('index.html', services=services, orders=orders, payments=payments)
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
