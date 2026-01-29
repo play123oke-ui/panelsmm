@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMM Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Selamat Datang di SMM Panel</h1>
+        </div>
+        <p id="demo">Klik tombol di bawah ini untuk menampilkan tanggal dan waktu saat ini.</p>
+        <button onclick="tampilkanWaktu()">Klik Saya!</button>
+
+        <script>
+            function tampilkanWaktu() {
+                var tanggal = new Date();
+                document.getElementById("demo").innerHTML = "Tanggal dan waktu saat ini: " + tanggal;
+            }
+        </script>
+    </div>
+</body>
+</html>
