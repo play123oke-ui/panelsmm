@@ -25,7 +25,7 @@ db = SQLAlchemy(app)
 def index():
     try:
         print("Masuk ke index")
-        return render_template('index.html')
+        return render_template('templates_index.html')
     except Exception as e:
         print(e)
         return str(e)
