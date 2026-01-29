@@ -27,7 +27,8 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlalchemy://panelsmm.db>
-db = SQLAlchemy(app) = api_key
+app.config['SECRET_KEY'] = api_key
+db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
