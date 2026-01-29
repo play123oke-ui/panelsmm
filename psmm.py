@@ -23,6 +23,24 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = api_key
 db = SQLAlchemy(app)
 
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sq>
+db = SQLAlchemy(app)
+
+@app.route('/')
+def index():
+    try:
+        print("Masuk ke index")
+        return render_template('index.html')
+    except Exception as e:
+        print(e)
+        return str(e)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+    
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
