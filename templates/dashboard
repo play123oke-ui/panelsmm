@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .nav {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #337ab7;
+            margin-right: 20px;
+        }
+        .nav a:hover {
+            color: #23527c;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="nav">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('deposit') }}">Deposit</a>
+            <a href="{{ url_for('database') }}">Database</a>
+        </div>
+        <div class="content">
+            <h2>Welcome, {{ user.username }}!</h2>
+            <p>Your balance: {{ user.balance }}</p>
+            <h3>Recent Deposits</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                    <th>Status</th>
+                </tr>
+                {% for deposit in deposits %}
+                <tr>
+                    <td>{{ deposit.id }}</td>
+                    <td>{{ deposit.amount }}</td>
+                    <td>{{ deposit.payment_method }}</td>
+                    <td>{{ deposit.status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <h3>Recent Orders</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Service ID</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.service_id }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.price }}</td>
+                    <td>{{ order.status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+              
