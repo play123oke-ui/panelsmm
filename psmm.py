@@ -246,5 +246,13 @@ def add_balance():
         return redirect(url_for('dashboard'))
     return render_template('add_balance.html')
 
+@app.route('/database')
+def database():
+    users = User.query.all()
+    deposits = Deposit.query.all()
+    services = Service.query.all()
+    orders = Order.query.all()
+    return render_template('database.html', users=users, deposits=deposits, services=services, orders=orders)
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
