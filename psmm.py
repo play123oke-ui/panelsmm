@@ -11,7 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///panelsmm.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-api_key = secrets.token_urlsafe(32)
+api_key = secrets.api_key
 app.config['SECRET_KEY'] = api_key
 db = SQLAlchemy(app)
 
